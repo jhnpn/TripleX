@@ -1,15 +1,15 @@
 #include <iostream>
 
-void PrintIntroduction()
+void PrintIntroduction(int Difficulty)
 {
     // Prints welcome message to the terminal
-    std::cout << "\n\nYou're an adventurer entering a dungeon that consists of many rooms full of puzzles...\n";
-    std::cout << "You will need to solve them in order to continue.\n\n";
+    std::cout << "\n\nYou're a secret agent breaking into a level " << Difficulty;
+    std::cout << " secure server room...\nEnter the code to continue\n\n";
 }
 
-bool PlayGame()
+bool PlayGame(int Difficulty)
 {
-    PrintIntroduction();
+    PrintIntroduction(Difficulty);
 
     // declares 3 number code
     const int CodeA = 4;
@@ -46,11 +46,20 @@ bool PlayGame()
 
 int main()
 {
+    int LevelDifficulty = 1;
+
     while (true)
     {
-        bool bLevelComplete = PlayGame();
+        bool bLevelComplete = PlayGame(LevelDifficulty);
         std::cin.clear(); // Clears any errors
         std::cin.ignore(); // Discards the buffer
+
+        if (bLevelComplete)
+        {
+            // Increase the level difficulty
+            ++LevelDifficulty;
+        }
+        
     }
 
     return 0;
