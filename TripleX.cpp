@@ -3,11 +3,11 @@
 void PrintIntroduction()
 {
     // Prints welcome message to the terminal
-    std::cout << "You're an adventurer entering a dungeon that consists of many rooms full of puzzles...\n";
+    std::cout << "\n\nYou're an adventurer entering a dungeon that consists of many rooms full of puzzles...\n";
     std::cout << "You will need to solve them in order to continue.\n\n";
 }
 
-void PlayGame()
+bool PlayGame()
 {
     PrintIntroduction();
 
@@ -35,15 +35,23 @@ void PlayGame()
     if (GuessSum == CodeSum && GuessProduct == CodeProduct) 
     {
         std::cout << "\nYou may advance to the next room.";
+        return true;
     }
     else
     {
         std::cout << "\nThere seems to be an error in your answer...";
+        return false;
     }
 }
 
 int main()
 {
-    PlayGame();
+    while (true)
+    {
+        bool bLevelComplete = PlayGame();
+        std::cin.clear(); // Clears any errors
+        std::cin.ignore(); // Discards the buffer
+    }
+
     return 0;
 }
