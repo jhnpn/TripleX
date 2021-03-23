@@ -1,4 +1,5 @@
 #include <iostream>
+#include <ctime> // accesses real time in the program
 
 void PrintIntroduction(int Difficulty)
 {
@@ -12,9 +13,9 @@ bool PlayGame(int Difficulty)
     PrintIntroduction(Difficulty);
 
     // declares 3 number code
-    const int CodeA = rand();
-    const int CodeB = rand();
-    const int CodeC = rand(); 
+    const int CodeA = rand() % Difficulty + Difficulty;
+    const int CodeB = rand() % Difficulty + Difficulty;
+    const int CodeC = rand() % Difficulty + Difficulty; 
 
     int CodeSum = CodeA + CodeB + CodeC;
     int CodeProduct = CodeA * CodeB * CodeC;
@@ -46,6 +47,8 @@ bool PlayGame(int Difficulty)
 
 int main()
 {
+    srand(time(NULL)); // creates new random sequence based on time of day
+
     int LevelDifficulty = 1;
     int const MaxLevel = 5;
 
