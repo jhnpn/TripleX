@@ -12,9 +12,9 @@ bool PlayGame(int Difficulty)
     PrintIntroduction(Difficulty);
 
     // declares 3 number code
-    const int CodeA = 4;
-    const int CodeB = 8;
-    const int CodeC = 2; 
+    const int CodeA = rand();
+    const int CodeB = rand();
+    const int CodeC = rand(); 
 
     int CodeSum = CodeA + CodeB + CodeC;
     int CodeProduct = CodeA * CodeB * CodeC;
@@ -34,12 +34,12 @@ bool PlayGame(int Difficulty)
     // check if the player's guess is correct
     if (GuessSum == CodeSum && GuessProduct == CodeProduct) 
     {
-        std::cout << "\nYou may advance to the next room.";
+        std::cout << "\n*** You got it! You may advance to the next room. ***";
         return true;
     }
     else
     {
-        std::cout << "\nThere seems to be an error in your answer...";
+        std::cout << "\n*** There seems to be an error in your answer...Try Again. ***";
         return false;
     }
 }
@@ -47,8 +47,9 @@ bool PlayGame(int Difficulty)
 int main()
 {
     int LevelDifficulty = 1;
+    int const MaxLevel = 5;
 
-    while (true)
+    while (LevelDifficulty <= MaxLevel) // loop the game until all levels completed
     {
         bool bLevelComplete = PlayGame(LevelDifficulty);
         std::cin.clear(); // Clears any errors
@@ -59,8 +60,9 @@ int main()
             // Increase the level difficulty
             ++LevelDifficulty;
         }
-        
     }
+
+    std::cout << "\n\n*** You did it! You've unlocked all the files. Great job! ***\n";
 
     return 0;
 }
